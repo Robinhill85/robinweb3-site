@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robin Web3 — Web3 Marketing & Consulting</title>
+    <meta name="description" content="AI-powered web3 marketing, content strategy, and go-to-market consulting. Helping web3 projects grow through strategic positioning, community building, and content that converts.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #16161f;
+            --bg-card-hover: #1c1c28;
+            --text-primary: #e8e6e3;
+            --text-secondary: #8a8894;
+            --text-muted: #5a5868;
+            --accent: #00f0ff;
+            --accent-dim: rgba(0, 240, 255, 0.12);
+            --accent-glow: rgba(0, 240, 255, 0.25);
+            --accent-warm: #ff6b35;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-accent: rgba(0, 240, 255, 0.2);
+            --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-dim) var(--bg-primary);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ─── Grain overlay ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ─── Navigation ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 15, 0.8);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .nav-logo {
+            font-family: var(--font-mono);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover { color: var(--text-primary); }
+
+        .nav-cta {
+            background: var(--accent) !important;
+            color: var(--bg-primary) !important;
+            padding: 0.55rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 700 !important;
+            font-size: 0.8rem !important;
+            letter-spacing: 0.04em;
+            transition: all 0.2s ease !important;
+        }
+
+        .nav-cta:hover {
+            box-shadow: 0 0 24px var(--accent-glow);
+            transform: translateY(-1px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ─── Hero ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-dim) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.2s;
+        }
+
+        .hero-tag::before {
+            content: '//';
+            margin-right: 0.5rem;
+            opacity: 0.5;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.75rem;
+            max-width: 800px;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.35s;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent);
+            position: relative;
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 540px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.65s;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 32px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: var(--text-primary);
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+            transition: all 0.25s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-muted);
+            background: var(--bg-card);
+        }
+
+        /* ─── Stats bar ─── */
+        .stats-bar {
+            margin-top: 5rem;
+            display: flex;
+            gap: 3rem;
+            opacity: 0;
+            animation: fadeUp 0.6s ease forwards;
+            animation-delay: 0.8s;
+        }
+
+        .stat {
+            border-left: 2px solid var(--border-accent);
+            padding-left: 1rem;
+        }
+
+        .stat-value {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+
+        /* ─── Sections ─── */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-tag::before {
+            content: '//';
+            margin-right: 0.5rem;
+            opacity: 0.5;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin-bottom: 3.5rem;
+            line-height: 1.7;
+        }
+
+        /* ─── Services ─── */
+        #services {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.25rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+        }
+
+        .service-card:hover::before { opacity: 1; }
+
+        .service-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: var(--accent-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.65;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-includes {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .service-includes li {
+            font-size: 0.72rem;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.03);
+            padding: 0.3rem 0.65rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .service-price {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-top: 1.25rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ─── About ─── */
+        .about-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 1.25rem;
+        }
+
+        .about-text strong {
+            color: var(--text-primary);
+        }
+
+        .tool-stack {
+            margin-top: 2rem;
+        }
+
+        .tool-stack h4 {
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 1rem;
+        }
+
+        .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tool-tags span {
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .tool-tags span:hover {
+            border-color: var(--border-accent);
+            color: var(--accent);
+        }
+
+        .about-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .highlight-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            border-color: var(--border-accent);
+        }
+
+        .highlight-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-card p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .highlight-number {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        /* ─── Process ─── */
+        #process {
+            border-top: 1px solid var(--border);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            counter-reset: step;
+        }
+
+        .process-step {
+            padding: 1.5rem;
+            position: relative;
+            counter-increment: step;
+        }
+
+        .process-step::before {
+            content: counter(step, decimal-leading-zero);
+            font-family: var(--font-mono);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent-dim);
+            display: block;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .process-step h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.65rem;
+        }
+
+        .process-step p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* ─── CTA ─── */
+        .cta-section {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .cta-inner {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .cta-inner h2 {
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .cta-inner p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ─── Contact ─── */
+        #contact .contact-simple {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-lead {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ─── Footer ─── */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover { color: var(--text-secondary); }
+
+        /* ─── Animations ─── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 900px) {
+            .about-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+            .process-steps { grid-template-columns: repeat(2, 1fr); }
+            .stats-bar { gap: 2rem; flex-wrap: wrap; }
+        }
+
+        @media (max-width: 640px) {
+            nav { padding: 1rem 1.25rem; }
+            .nav-links { 
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 15, 0.97);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.25rem;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-links.open { display: flex; }
+            .mobile-toggle { display: block; }
+            .hero { padding: 6rem 1.25rem 3rem; }
+            section { padding: 4rem 1.25rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ─── Navigation ─── -->
+<nav>
+    <a href="#" class="nav-logo">robin<span>web3</span></a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="https://app.usemotion.com/meet/robin-h/consultation" class="nav-cta" target="_blank" rel="noopener">BOOK A CALL</a></li>
+    </ul>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ─── Hero ─── -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-tag">Web3 Marketing & Consulting</div>
+        <h1>I help web3 projects <em>grow</em> through AI-powered strategy</h1>
+        <p class="hero-sub">From narrative positioning to community building to content that actually converts — I bring the marketing infrastructure your project needs to break through the noise.</p>
+        <div class="hero-actions">
+            <a href="https://app.usemotion.com/meet/robin-h/consultation" class="btn-primary" target="_blank" rel="noopener">Book a free consultation →</a>
+            <a href="#services" class="btn-secondary">View services</a>
+        </div>
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-value">10+</div>
+                <div class="stat-label">Web3 projects served</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">Web3</div>
+                <div class="stat-label">Native since 2021</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">Global</div>
+                <div class="stat-label">Markets served</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Services ─── -->
+<section id="services">
+    <div class="section-inner">
+        <div class="section-tag">What I do</div>
+        <h2 class="section-title reveal">Services</h2>
+        <p class="section-subtitle reveal">Three ways to work together, depending on what your project needs right now.</p>
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">✍️</div>
+                <h3>Web3 Content Engine</h3>
+                <p>Consistent, high-quality content across all your channels. I use AI-augmented workflows to produce at scale without losing the human edge your audience expects.</p>
+                <ul class="service-includes">
+                    <li>Twitter/X threads</li>
+                    <li>Blog posts</li>
+                    <li>Community copy</li>
+                    <li>Newsletter</li>
+                    <li>Visual content</li>
+                    <li>Video shorts</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">🎯</div>
+                <h3>Go-to-Market Strategy</h3>
+                <p>Launching a token, protocol, or dApp? I'll build the narrative, identify your audience, and map out the channels and tactics to make your launch land.</p>
+                <ul class="service-includes">
+                    <li>Positioning</li>
+                    <li>Launch plan</li>
+                    <li>Channel strategy</li>
+                    <li>KOL mapping</li>
+                    <li>Community seeding</li>
+                </ul>
+            </div>
+            <div class="service-card reveal">
+                <div class="service-icon">⚡</div>
+                <h3>Full Marketing Retainer</h3>
+                <p>Your embedded marketing partner. I handle strategy and execution end-to-end so your team can focus on building product.</p>
+                <ul class="service-includes">
+                    <li>Content creation</li>
+                    <li>Strategy</li>
+                    <li>Community mgmt</li>
+                    <li>Analytics</li>
+                    <li>Growth experiments</li>
+                    <li>Monthly reporting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── About ─── -->
+<section id="about">
+    <div class="section-inner">
+        <div class="section-tag">About</div>
+        <div class="about-layout">
+            <div class="about-text reveal">
+                <h2 class="section-title">The unfair advantage? I ship faster than your whole marketing team.</h2>
+                <p>I'm Robin — a web3-native marketer who runs on a <strong>proprietary AI-augmented workflow</strong> that lets me operate at the speed and quality of an agency, at a fraction of the cost.</p>
+                <p>While others spend weeks on a content calendar, I've already shipped it. While agencies burn through your budget on strategy decks nobody reads, I'm testing, iterating, and driving real results.</p>
+                <p>I've been in the web3 space since 2021, and I understand the culture, the community dynamics, and the narratives that move markets. That context — combined with an AI-native workflow — is what makes this work.</p>
+                <div class="tool-stack">
+                    <h4>The bottom line</h4>
+                    <div class="tool-tags">
+                        <span>Agency-quality output</span>
+                        <span>Freelancer speed</span>
+                        <span>48hr turnaround</span>
+                        <span>Global reach</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-highlights reveal">
+                <div class="highlight-card">
+                    <span class="highlight-number">01</span>
+                    <h4>AI-Native, Not AI-Lazy</h4>
+                    <p>I don't just paste prompts into ChatGPT. I orchestrate multiple AI tools with human judgment to produce work that sounds like your brand, not a robot.</p>
+                </div>
+                <div class="highlight-card">
+                    <span class="highlight-number">02</span>
+                    <h4>Web3 Culture Fluent</h4>
+                    <p>I know the difference between a community and a Telegram group. I understand tokenomics narratives, DeFi positioning, and what CT actually responds to.</p>
+                </div>
+                <div class="highlight-card">
+                    <span class="highlight-number">03</span>
+                    <h4>Speed as a Feature</h4>
+                    <p>My AI-augmented workflow means I deliver in days what agencies deliver in weeks. In web3, timing is everything — and I don't miss windows.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Process ─── -->
+<section id="process">
+    <div class="section-inner">
+        <div class="section-tag">How it works</div>
+        <h2 class="section-title reveal">Simple process, fast results</h2>
+        <p class="section-subtitle reveal">No 6-week onboarding. No endless meetings. Here's how we go from first call to shipping.</p>
+        <div class="process-steps">
+            <div class="process-step reveal">
+                <h4>Discovery call</h4>
+                <p>30 minutes to understand your project, goals, and where you're stuck. Free, no commitment.</p>
+            </div>
+            <div class="process-step reveal">
+                <h4>Strategy proposal</h4>
+                <p>Within 48 hours, you get a clear plan with deliverables, timeline, and pricing. No fluff.</p>
+            </div>
+            <div class="process-step reveal">
+                <h4>Execute & iterate</h4>
+                <p>I start delivering immediately. Weekly check-ins, rapid iterations, transparent reporting.</p>
+            </div>
+            <div class="process-step reveal">
+                <h4>Scale what works</h4>
+                <p>We double down on what's driving results and cut what isn't. Data-driven, not ego-driven.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+    <div class="cta-inner reveal">
+        <div class="section-tag">Ready?</div>
+        <h2>Let's make your project impossible to ignore</h2>
+        <p>Whether you need a full marketing engine or just a sharp content strategy, I'll help you get there faster than you thought possible.</p>
+        <div class="cta-actions">
+            <a href="https://app.usemotion.com/meet/robin-h/consultation" class="btn-primary" target="_blank" rel="noopener">Book a free consultation →</a>
+            <a href="https://www.linkedin.com/in/robinmarketing/" class="btn-secondary" target="_blank" rel="noopener">View my LinkedIn ↗</a>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Contact ─── -->
+<section id="contact">
+    <div class="section-inner">
+        <div class="section-tag">Contact</div>
+        <h2 class="section-title reveal">Get in touch</h2>
+        <p class="section-subtitle reveal">Have a project in mind? Send me a message and I'll get back to you within 24 hours.</p>
+        <div class="contact-simple reveal">
+            <p class="contact-lead">I work with web3 projects globally. Whether you're pre-launch or scaling, there's likely a way I can help.</p>
+            <div class="contact-actions">
+                <a href="https://app.usemotion.com/meet/robin-h/consultation" class="btn-primary" target="_blank" rel="noopener">Book a free consultation →</a>
+                <a href="https://www.linkedin.com/in/robinmarketing/" class="btn-secondary" target="_blank" rel="noopener">
+                    <span>💼</span> Connect on LinkedIn
+                </a>
+                <a href="https://x.com/RobinHill85/" class="btn-secondary" target="_blank" rel="noopener">
+                    <span>𝕏</span> Follow on X
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-left">
+            <span style="font-family: var(--font-mono); color: var(--text-secondary);">robinweb3</span> · © 2026
+        </div>
+        <div class="footer-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile menu toggle
+    document.getElementById('mobileToggle').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('open');
+        });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, i * 80);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav background on scroll
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('nav');
+        if (window.scrollY > 50) {
+            nav.style.background = 'rgba(10, 10, 15, 0.95)';
+        } else {
+            nav.style.background = 'rgba(10, 10, 15, 0.8)';
+        }
+    });
+</script>
+
+</body>
+</html>
