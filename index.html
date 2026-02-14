@@ -427,6 +427,111 @@
             border-top: 1px solid var(--border);
         }
 
+        /* ─── Portfolio ─── */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .portfolio-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-card:hover {
+            border-color: var(--border-accent);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+        }
+
+        .portfolio-card:hover::before { opacity: 1; }
+
+        .portfolio-featured {
+            grid-column: span 2;
+        }
+
+        .portfolio-label {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            color: var(--accent);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .portfolio-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .portfolio-card p {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .portfolio-tags span {
+            font-size: 0.68rem;
+            font-family: var(--font-mono);
+            color: var(--text-muted);
+            background: rgba(255,255,255,0.03);
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .portfolio-link-text {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--accent);
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .portfolio-card:hover .portfolio-link-text { opacity: 1; }
+
+        .portfolio-confidential-note {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 1.25rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-style: italic;
+        }
+
         /* ─── About ─── */
         .about-layout {
             display: grid;
@@ -669,6 +774,8 @@
         /* ─── Responsive ─── */
         @media (max-width: 900px) {
             .about-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .portfolio-featured { grid-column: span 1; }
             .process-steps { grid-template-columns: repeat(2, 1fr); }
             .stats-bar { gap: 2rem; flex-wrap: wrap; }
         }
@@ -705,6 +812,7 @@
     <a href="#" class="nav-logo">robin<span>web3</span></a>
     <ul class="nav-links" id="navLinks">
         <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#process">Process</a></li>
         <li><a href="https://app.usemotion.com/meet/robin-h/consultation" class="nav-cta" target="_blank" rel="noopener">BOOK A CALL</a></li>
@@ -783,6 +891,83 @@
                     <li>Growth experiments</li>
                     <li>Monthly reporting</li>
                 </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── Portfolio ─── -->
+<section id="portfolio">
+    <div class="section-inner">
+        <div class="section-tag">Selected work</div>
+        <h2 class="section-title reveal">Portfolio</h2>
+        <p class="section-subtitle reveal">Products I've built, tools I've shipped, and growth I've driven — across web3 and AI.</p>
+        <div class="portfolio-grid">
+            <a href="https://posttosource.com" target="_blank" rel="noopener" class="portfolio-card portfolio-featured reveal">
+                <div class="portfolio-label">SaaS Product</div>
+                <h3>PostToSource</h3>
+                <p>Built a SaaS tool that converts social media posts (X, LinkedIn, Medium, Substack) into hosted PDF links you can paste directly into NotebookLM, Claude Projects, or any AI tool. Solves the broken workflow of copy-pasting content into AI knowledge bases.</p>
+                <div class="portfolio-tags">
+                    <span>Product Development</span>
+                    <span>SaaS</span>
+                    <span>AI Tooling</span>
+                    <span>Live Product</span>
+                </div>
+                <div class="portfolio-link-text">Visit posttosource.com ↗</div>
+            </a>
+            <a href="https://prunegram.com" target="_blank" rel="noopener" class="portfolio-card reveal">
+                <div class="portfolio-label">Telegram Mini App</div>
+                <h3>Prunegram</h3>
+                <p>Designed and developed the first Telegram relationship manager — moving beyond basic chat cleanup into AI-powered contact insights. Conducted full competitive analysis of 10 competitors, identified a blue ocean in the personal tools segment.</p>
+                <div class="portfolio-tags">
+                    <span>Product Strategy</span>
+                    <span>Competitive Analysis</span>
+                    <span>GTM</span>
+                </div>
+                <div class="portfolio-link-text">Visit prunegram.com ↗</div>
+            </a>
+            <div class="portfolio-card reveal">
+                <div class="portfolio-label">Web3 Intelligence</div>
+                <h3>Wallet Intelligence Tool</h3>
+                <p>Built a research tool that maps 400+ crypto wallet addresses to their Twitter/X identities across EVM and Solana chains. Delivered structured CSV datasets for CRM integration with confidence scoring — bridging on-chain and social data.</p>
+                <div class="portfolio-tags">
+                    <span>Data Analysis</span>
+                    <span>Blockchain Research</span>
+                    <span>Technical Build</span>
+                </div>
+            </div>
+            <a href="https://www.altcoinedge.com" target="_blank" rel="noopener" class="portfolio-card reveal">
+                <div class="portfolio-label">Web3 Growth Agency</div>
+                <h3>Altcoin Edge</h3>
+                <p>Co-founded a web3 growth agency serving projects backed by Arrington Capital, Outlier Ventures, and Moonbeam. Led community growth, GTM strategy, and content for clients including Voi, Portal to Bitcoin, and Drosera. Preferred partner of Outlier Ventures and Arrington Capital.</p>
+                <div class="portfolio-tags">
+                    <span>Agency</span>
+                    <span>Community Growth</span>
+                    <span>Token Launches</span>
+                    <span>Content</span>
+                </div>
+                <div class="portfolio-link-text">Visit altcoinedge.com ↗</div>
+            </a>
+            <div class="portfolio-card reveal">
+                <div class="portfolio-label">AI Content Production</div>
+                <h3>GenAI Video & Content</h3>
+                <p>Producing AI-generated video content for web3 brands — from product ads to social shorts. Leveraging tools like Higgsfield, CapCut, and custom workflows to deliver broadcast-quality content at startup speed and budget.</p>
+                <div class="portfolio-tags">
+                    <span>Video Production</span>
+                    <span>GenAI</span>
+                    <span>Brand Content</span>
+                </div>
+            </div>
+            <div class="portfolio-card portfolio-confidential reveal">
+                <div class="portfolio-label">Active Client</div>
+                <h3>Marketing Analytics Dashboard</h3>
+                <p>Built a custom marketing analytics dashboard for an active client — tracking campaign performance, community metrics, and content ROI across channels in real time.</p>
+                <div class="portfolio-tags">
+                    <span>Analytics</span>
+                    <span>Dashboard</span>
+                    <span>Data Visualization</span>
+                </div>
+                <div class="portfolio-confidential-note">🔒 Under NDA — details available on request</div>
             </div>
         </div>
     </div>
@@ -898,6 +1083,7 @@
         </div>
         <div class="footer-links">
             <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
         </div>
