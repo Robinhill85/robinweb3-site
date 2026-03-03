@@ -3,7 +3,7 @@
   <url>
     <loc>https://www.robinweb3.com</loc>
     <lastmod>2026-02-22</lastmod>
-    <changeFrequency>monthly</changeFrequency>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 </urlset>
