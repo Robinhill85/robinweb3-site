@@ -11,123 +11,142 @@
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Person",
-      "@id": "#person",
-      "name": "Robin",
-      "jobTitle": "Web3 Marketing Consultant",
-      "description": "Web3-native marketer specializing in AI-powered strategy, content creation, and go-to-market consulting for blockchain projects since 2021.",
-      "url": "https://www.robinweb3.com",
-      "sameAs": [
-        "https://www.linkedin.com/in/robinmarketing/",
-        "https://x.com/RobinHill85/"
-      ],
-      "knowsAbout": [
-        "Web3 Marketing",
-        "Blockchain Marketing",
-        "AI-Powered Content Strategy",
-        "Community Building",
-        "Token Launch Strategy",
-        "DeFi Marketing",
-        "Crypto Content Creation"
-      ],
-      "memberOf": {
-        "@id": "#organization"
-      }
-    },
-    {
-      "@type": "Organization",
-      "@id": "#organization",
-      "name": "RobinWeb3",
-      "url": "https://www.robinweb3.com",
-      "description": "AI-powered web3 marketing, content strategy, and go-to-market consulting for blockchain projects.",
-      "founder": {
-        "@id": "#person"
-      },
-      "employee": {
-        "@id": "#person"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/robinmarketing/"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Web3 Marketing Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@id": "#content-engine"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@id": "#gtm-strategy"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@id": "#marketing-retainer"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "#webpage",
-      "url": "https://www.robinweb3.com",
-      "name": "Robin Web3 — Web3 Marketing & Consulting",
-      "deription": "AI-powered web3 marketing, content strategy, and go-to-market consulting. Helping web3 projects grow through strategic positioning, community building, and content that converts.",
-      "mainEntity": {
-        "@id": "#person"
-      },
-      "about": {
-        "@id": "#organization"
-      },
-      "primaryImageOfPage": {
-        "@type": "ImageObject",
-        "url": "https://www.robinweb3.com/og-image.jpg"
-      }
-    },
-    {
-      "@type": "Service",
-      "@id": "#content-engine",
-      "name": "Web3 Content Engine",
-      "description": "Consistent, high-quality content across all channels using AI-augmented workflows to produce at scale without losing the human edge.",
-      "category": "Content Marketing",
-      "offers": {
-        "@type": "Offer",
-        "description": "Twitter/X threads, blog posts, community copy, newsletter, visual content, video shorts"
-      }
-    },
-    {
-      "@type": "Service",
-      "@id": "#gtm-strategy",
-      "name": "Go-to-Market Strategy",
-      "description": "Complete launch strategy for tokens, protocols, or dApps including narrative building, audience identification, and channel mapping.",
-      "category": "Marketing Strategy",
-      "offers": {
-        "@type": "Offer",
-        "description": "Positioning, launch plan, channel strategy, KOL mapping, community seeding"
-      }
-    },
-    {
-      "@type": "Service",
-      "@id": "#marketing-retainer",
-      "name": "Full Marketing Retainer",
-      "description": "End-to-end marketing partnership handling strategy and execution so teams can focus on product development.",
-      "category": "Marketing Consulting",
-      "offers": {
-        "@type": "Offer",
-        "description": "Content creation, strategy, community management, analytics, growth experiments, monthly reporting"
-      }
-    }
-  ]
+  "@type": "Person",
+  "name": "Robin",
+  "jobTitle": "Web3 Marketing Consultant",
+  "description": "Web3-native marketer specializing in AI-powered strategy, content creation, and go-to-market consulting for blockchain projects since 2021.",
+  "url": "https://www.robinweb3.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/robinmarketing/",
+    "https://x.com/RobinHill85/"
+  ],
+  "knowsAbout": [
+    "Web3 Marketing",
+    "Blockchain Marketing",
+    "AI-Powered Content Strategy",
+    "Community Building",
+    "Token Launch Strategy",
+    "DeFi Marketing",
+    "Crypto Content Creation"
+  ],
+  "worksFor": {
+    "@type": "Organization",
+    "name": "RobinWeb3"
+  }
 }
+</script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "RobinWeb3",
+  "url": "https://www.robinweb3.com",
+  "description": "AI-powered web3 marketing, content strategy, and go-to-market consulting for blockchain projects.",
+  "founder": {
+    "@type": "Person",
+    "name": "Robin"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/robinmarketing/"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Web3 Marketing Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Web3 Content Engine"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Go-to-Market Strategy"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Full Marketing Retainer"
+        }
+      }
+    ]
+  }
+}
+</script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "url": "https://www.robinweb3.com",
+  "name": "Robin Web3 — Web3 Marketing & Consulting",
+  "description": "AI-powered web3 marketing, content strategy, and go-to-market consulting. Helping web3 projects grow through strategic positioning, community building, and content that converts.",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Robin"
+  },
+  "about": {
+    "@type": "Organization",
+    "name": "RobinWeb3"
+  },
+  "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "url": "https://www.robinweb3.com/og-image.jpg"
+  }
+}
+</script>
+    <script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Web3 Content Engine",
+    "description": "Consistent, high-quality content across all channels using AI-augmented workflows to produce at scale without losing the human edge.",
+    "category": "Content Marketing",
+    "provider": {
+      "@type": "Organization",
+      "name": "RobinWeb3"
+    },
+    "offers": {
+      "@type": "Offer",
+      "description": "Twitter/X threads, blog posts, community copy, newsletter, visual content, video shorts"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Go-to-Market Strategy",
+    "description": "Complete launch strategy for tokens, protocols, or dApps including narrative building, audience identification, and channel mapping.",
+    "category": "Marketing Strategy",
+    "provider": {
+      "@type": "Organization",
+      "name": "RobinWeb3"
+    },
+    "offers": {
+      "@type": "Offer",
+      "description": "Positioning, launch plan, channel strategy, KOL mapping, community seeding"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Full Marketing Retainer",
+    "description": "End-to-end marketing partnership handling strategy and execution so teams can focus on product development.",
+    "category": "Marketing Consulting",
+    "provider": {
+      "@type": "Organization",
+      "name": "RobinWeb3"
+    },
+    "offers": {
+      "@type": "Offer",
+      "description": "Content creation, strategy, community management, analytics, growth experiments, monthly reporting"
+    }
+  }
+]
 </script>
     <style>
         :root {
